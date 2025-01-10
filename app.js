@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const  ProductRoute = require('./routes/Product');
+const categoryRoutes = require('./routes/Category');
 
 
 const { PORT, MONGO_URI } = process.env;
@@ -14,7 +15,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/products', ProductRoute);
+app.use('/api/products', ProductRoute);
+app.use("/api/category",categoryRoutes);
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))

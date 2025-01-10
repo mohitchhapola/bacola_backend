@@ -1,0 +1,38 @@
+async (req, res) => {
+    const limit = plimit(2);
+    const imagesToUpload = req.body.images.map((image) => { return limit (async () => {
+    })
+    });
+    const result = await cloudinary.uploader.upload (image); 
+    // console.log(Successfully uploaded ${image}`); 
+    // console.log(~> Result: ${result.secure_url}`); 
+    return result;
+    })
+    
+    const uploadStatus = await Promise.all(imagesToUpload);
+    
+    const imgUrl=uploadStatus.map((item)=>{
+    return item.secure_url
+    })
+    
+    if(!uploadStatus)
+    {
+    return res.status(500).json({
+    error:"Images not uploaded",
+    status:false
+    })
+    }
+    
+    let category = new Category({ 
+    name:req.body.name, 
+    images:imgUrl,
+    color: req.body.color
+    });
+    
+    if (!category) {
+    res.status(500).json({ error: err, success: false
+    })
+    }
+    
+    category=await category.save();
+    res.status(201).json(category);
