@@ -1,6 +1,6 @@
 const pLimit=require("p-limit");
 const cloudinary=require("cloudinary").v2;
-const {Category} = require("../models/category")
+const Category = require("../models/category")
 
 
 cloudinary.config({

@@ -14,5 +14,7 @@ color:{
 type: String, required: true
 }
 })
-exports.Category=mongoose.model('Category', categorySchema);
+const Category=mongoose.model('Category', categorySchema);
+module.exports=Category;
+
 
